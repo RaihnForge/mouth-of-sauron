@@ -1,0 +1,27 @@
+{
+  "name": "mouth-of-sauron",
+  "version": "0.1.0",
+  "description": "Chrome (MV3) extension that blocks Shorts/Reels on YouTube, Facebook, Instagram, and TikTok — unless toggled off.",
+  "private": false,
+  "license": "MIT",
+  "author": "Joshua Keyes (RaihnForge)",
+  "homepage": "https://raihnforge.github.io/mouth-of-sauron/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaihnForge/mouth-of-sauron.git"
+  },
+  "scripts": {
+    "build:icons": "node scripts/generate-icons.js",
+    "build:zip": "node scripts/build-zip.js",
+    "build": "node scripts/generate-icons.js && node scripts/build-zip.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "shorts",
+    "reels",
+    "blocker",
+    "productivity",
+    "youtube",
+    "tiktok"
+  ]
+}

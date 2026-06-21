@@ -41,6 +41,20 @@ scripts/generate-icons.js  regenerates icons/ (Node stdlib only)
 icons/                   generated PNG icons
 ```
 
+## Updates
+
+How a new version reaches you depends on how it was installed:
+
+| Install method | Auto-updates? | How to update |
+|----------------|---------------|---------------|
+| **Chrome Web Store** (once listed) | **Yes** | Chrome checks the store every few hours and silently updates when `manifest.json`'s `version` is bumped. Nothing to do. |
+| **Unpacked** (Load unpacked) | **No** | Re-download / `git pull`, then click the refresh arrow on the card in `chrome://extensions`. |
+| **Self-hosted `update_url`** | Possible, not used | Chromium can poll an update manifest XML, but Chrome blocks off-store installs on Windows without enterprise policy, so this path isn't worth it for a personal tool. Stick with the Web Store for auto-update. |
+
+Releasing a new version: bump `version` in **both** `manifest.json` and
+`package.json`, run `node scripts/build-zip.js`, and upload `dist/mouth-of-sauron-store.zip`
+to the Web Store dashboard (or just push to `main` for unpacked users to pull).
+
 ## Maintenance note
 
 YouTube/Meta/TikTok ship obfuscated, frequently-changing DOM. The selectors in
