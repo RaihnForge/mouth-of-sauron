@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mouth of Sauron — shut the short-form feed</title>
+    <meta
+      name="description"
+      content="A Chrome extension that blocks Shorts and Reels on YouTube, Facebook, Instagram, and TikTok — unless you toggle it off."
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <style>
+      :root {
+        --bg: #0a0303;
+        --panel: #160606;
+        --line: #3a0d0d;
+        --text: #f3d9d9;
+        --sub: #b08585;
+        --red: #c41212;
+        --red-bright: #ff5a5a;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% -10%, #2a0707 0%, transparent 55%),
+          var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+      }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+      header.hero { text-align: center; padding: 72px 24px 40px; }
+      .hero img {
+        width: 104px; height: 104px; border-radius: 22px;
+        box-shadow: 0 0 40px rgba(196, 18, 18, 0.45);
+      }
+      .hero h1 {
+        font-size: 42px; margin: 22px 0 6px;
+        letter-spacing: 0.5px; color: var(--red-bright);
+      }
+      .hero .tagline { font-size: 19px; color: var(--text); margin: 0; }
+      .hero .sub { color: var(--sub); margin: 10px auto 0; max-width: 520px; }
+
+      .cta {
+        display: inline-flex; align-items: center; gap: 9px;
+        margin: 26px 8px 0; padding: 13px 22px;
+        background: var(--red); color: #fff; text-decoration: none;
+        border-radius: 10px; font-weight: 600; font-size: 15px;
+        border: 1px solid var(--red-bright);
+        transition: transform 0.1s ease, background 0.15s ease;
+      }
+      .cta:hover { background: var(--red-bright); transform: translateY(-1px); }
+      .cta.ghost { background: transparent; color: var(--red-bright); }
+      .cta.ghost:hover { background: #1c0606; }
+
+      section { padding: 34px 0; border-top: 1px solid var(--line); }
+      section h2 { font-size: 22px; color: var(--red-bright); margin: 0 0 16px; }
+
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; padding: 12px 14px; vertical-align: top; }
+      th { color: var(--sub); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px; }
+      tr + tr td { border-top: 1px solid var(--line); }
+      td.platform { white-space: nowrap; font-weight: 600; color: var(--text); }
+
+      ol.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+      ol.steps li {
+        position: relative; padding: 10px 0 10px 44px; margin: 0;
+        border-top: 1px solid var(--line);
+      }
+      ol.steps li:first-child { border-top: 0; }
+      ol.steps li::before {
+        counter-increment: step; content: counter(step);
+        position: absolute; left: 0; top: 9px;
+        width: 28px; height: 28px; border-radius: 50%;
+        background: #1c0606; border: 1px solid var(--red);
+        color: var(--red-bright); font-weight: 700; font-size: 14px;
+        display: flex; align-items: center; justify-content: center;
+      }
+      code, kbd {
+        background: #1c0606; border: 1px solid var(--line); border-radius: 5px;
+        padding: 1px 7px; font-size: 13px; color: #ffb3b3;
+      }
+      .note {
+        background: var(--panel); border: 1px solid var(--line);
+        border-left: 3px solid var(--red); border-radius: 8px;
+        padding: 14px 16px; color: var(--sub); font-size: 14px; margin-top: 18px;
+      }
+      footer {
+        text-align: center; padding: 40px 24px 60px; color: var(--sub);
+        font-size: 13px; border-top: 1px solid var(--line);
+      }
+      footer a { color: var(--red-bright); text-decoration: none; }
+      .lore { font-style: italic; color: var(--sub); max-width: 560px; margin: 4px auto 0; }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <img src="assets/icon128.png" alt="Mouth of Sauron icon — a fanged maw" />
+      <h1>Mouth of Sauron</h1>
+      <p class="tagline">Shut the short-form feed.</p>
+      <p class="sub">
+        A Chrome extension that blocks Shorts and Reels on YouTube, Facebook,
+        Instagram, and TikTok — until <em>you</em> decide to open the maw.
+      </p>
+      <div>
+        <a class="cta" id="download" href="#install">⬇ Download &amp; install</a>
+        <a class="cta ghost" id="repo" href="#" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+      <p class="lore">
+        "The Mouth of Sauron was the herald that spoke the endless words of the
+        Dark Tower." This shuts it.
+      </p>
+    </header>
+
+    <main class="wrap">
+      <section id="what">
+        <h2>What it blocks</h2>
+        <table>
+          <tr><th>Platform</th><th>Behavior when warding is on (default)</th></tr>
+          <tr>
+            <td class="platform">YouTube</td>
+            <td>Hides Shorts shelves, sidebar &amp; mini-guide Shorts entries, and Shorts grid rows. Redirects <code>/shorts/&lt;id&gt;</code> to the normal watch page.</td>
+          </tr>
+          <tr>
+            <td class="platform">Facebook</td>
+            <td>Hides Reels feed cards and the Reels nav entry. Redirects <code>/reel/…</code> to the home feed.</td>
+          </tr>
+          <tr>
+            <td class="platform">Instagram</td>
+            <td>Hides the Reels nav entry. Redirects <code>/reels/…</code> to home.</td>
+          </tr>
+          <tr>
+            <td class="platform">TikTok</td>
+            <td>The whole site is short-form, so it's held behind a block curtain. Toggle TikTok off to enter.</td>
+          </tr>
+        </table>
+        <div class="note">
+          Blocking is <strong>on by default</strong>. The toolbar popup gives you a
+          master switch plus one toggle per site — the toggle is the "unless turned
+          off." Settings sync across your Chrome profile.
+        </div>
+      </section>
+
+      <section id="install">
+        <h2>Install (unpacked)</h2>
+        <ol class="steps">
+          <li>Download the extension and unzip it somewhere permanent.</li>
+          <li>Open <code>chrome://extensions</code> in Chrome (or any Chromium browser).</li>
+          <li>Turn on <strong>Developer mode</strong> (top-right toggle).</li>
+          <li>Click <strong>Load unpacked</strong> and select the unzipped folder.</li>
+          <li>Pin the fanged icon to your toolbar. Click it to toggle sites.</li>
+        </ol>
+        <div style="margin-top: 22px">
+          <a class="cta" id="download2" href="#" target="_blank" rel="noopener">⬇ Download .zip</a>
+        </div>
+        <div class="note">
+          A Chrome Web Store listing may follow — for now this installs as an
+          unpacked developer extension, which works exactly the same and updates
+          when you re-download.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built in the Keyes Dev Studio · <a id="repo2" href="#" target="_blank" rel="noopener">RaihnForge/mouth-of-sauron</a> · MIT licensed
+    </footer>
+
+    <script>
+      // Point the GitHub / download links at the repo this page is served from.
+      (function () {
+        var owner = "RaihnForge";
+        var repo = "mouth-of-sauron";
+        // Infer owner from the Pages host when possible (e.g. raihnforge.github.io).
+        var m = location.host.match(/^([^.]+)\.github\.io$/i);
+        if (m) owner = m[1];
+        var repoUrl = "https://github.com/" + owner + "/" + repo;
+        var zipUrl = repoUrl + "/archive/refs/heads/main.zip";
+        ["repo", "repo2"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.href = repoUrl;
+        });
+        ["download2"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.href = zipUrl;
+        });
+      })();
+    </script>
+  </body>
+</html>

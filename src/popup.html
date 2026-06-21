@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Mouth of Sauron</title>
+  </head>
+  <body>
+    <header>
+      <span class="eye">👁️</span>
+      <div class="title">
+        <h1>Mouth of Sauron</h1>
+        <p class="tag">Shuts the feed.</p>
+      </div>
+    </header>
+
+    <div class="row master">
+      <label for="master">
+        <span class="name">Warding active</span>
+        <span class="sub">Master switch for every site</span>
+      </label>
+      <input type="checkbox" id="master" class="switch" />
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row" data-key="youtube">
+      <label for="youtube"><span class="name">YouTube Shorts</span></label>
+      <input type="checkbox" id="youtube" class="switch" />
+    </div>
+    <div class="row" data-key="facebook">
+      <label for="facebook"><span class="name">Facebook Reels</span></label>
+      <input type="checkbox" id="facebook" class="switch" />
+    </div>
+    <div class="row" data-key="instagram">
+      <label for="instagram"><span class="name">Instagram Reels</span></label>
+      <input type="checkbox" id="instagram" class="switch" />
+    </div>
+    <div class="row" data-key="tiktok">
+      <label for="tiktok"><span class="name">TikTok</span><span class="sub">Whole site (it's all Shorts)</span></label>
+      <input type="checkbox" id="tiktok" class="switch" />
+    </div>
+
+    <footer>Changes apply on the next page load. <a href="#" id="reload">Reload this tab</a></footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
