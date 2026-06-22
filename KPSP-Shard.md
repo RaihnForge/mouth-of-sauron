@@ -20,12 +20,20 @@
 - [x] **M2 — Brand + publish.** Hooded-shade icon (red X eyes), GitHub Pages landing, public repo. (2026-06-21)
 - [ ] **M3 — Chrome Web Store listing.** Upload `dist` zip, screenshots, review, live. (needs Joshua's dev account + $5)
 - [ ] **M4 — Selector hardening pass.** Verify hide rules against current YouTube/Meta/TikTok markup; add fallbacks.
+- [ ] **M5 — Publishing-standard retrofit.** Convert to the private-canonical + public-mirror model (canonical PRIVATE `E4Keyes/grimas-bane`; public `RaihnForge/grimas-bane` mirror = `.public-manifest` whitelist only). See keeper.md directive. (added 2026-06-22)
 
 ## Backlog
 
 Priority order. Pull from the top.
 
-1. **[M3] Web Store submission** — package is built (`scripts/build-zip.js`),
+1. **[M5] Publishing-standard retrofit** — grimas-bane is currently a lone PUBLIC
+   `RaihnForge` repo exposing every internal pillar doc; the new standard
+   (`sanctum/DEVELOPMENT-STANDARDS.md` → "Publishing to the Public", landed
+   2026-06-22) requires canonical=PRIVATE `E4Keyes/grimas-bane` + a separate
+   public mirror holding only a `.public-manifest` whitelist (pushed by
+   `scripts/publish-public.ps1`). Use **Narya** as the reference example. Joshua
+   must run the public-repo creation step (Claude can't create public repos).
+2. **[M3] Web Store submission** — package is built (`scripts/build-zip.js`),
    listing copy in `STORE-LISTING.md`. Blocked on Joshua registering a Web Store
    developer account ($5) and capturing 1280×800 screenshots.
 2. **[M4] Selector audit** — load each site, confirm: YT Shorts shelf/sidebar
