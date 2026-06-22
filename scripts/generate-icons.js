@@ -1,7 +1,7 @@
 /*
   Generates the extension icons with Node stdlib only (zlib for PNG deflate).
-  Design: a "prohibited" sign (red ring + diagonal slash) on a dark field —
-  the shut mouth. Run: node scripts/generate-icons.js
+  Design: a red forked serpent tongue (Wormtongue's whisper) cut by a bone-white
+  diagonal stroke — the bane. Run: node scripts/generate-icons.js
 */
 
 const zlib = require("zlib");
